@@ -15,6 +15,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // showing the header
       body: Column(
         children: [
           Container(
@@ -50,6 +51,8 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+
+          // showing the body
           FoodPageBody(),
         ],
       ),
