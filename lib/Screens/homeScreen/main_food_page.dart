@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/color_widget.dart';
+import 'package:food_delivery/utility/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
@@ -14,6 +15,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+    //its use for check the size of screen
+    // print(" Current size is " +MediaQuery.of(context).size.height.toString());
     return Scaffold(
       // showing the header
       body: Column(
@@ -37,14 +40,15 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
+                    // its search button i make ..
                     Container(
                       width: 45,
                       height: 45,
-                      child: Icon(Icons.search, color: Colors.white,),
                       decoration: BoxDecoration(
                         color: AppColors.mainColor,
                         borderRadius: BorderRadius.circular(15),
                       ),
+                      child: Icon(Icons.search, color: Colors.white, size: Dimensions.iconSize24,),
                     )
                   ],
                 ),
@@ -53,7 +57,11 @@ class _MainPageState extends State<MainPage> {
           ),
 
           // showing the body
-          FoodPageBody(),
+         Expanded(
+             child: SingleChildScrollView(
+               child:  FoodPageBody(),
+             ),
+         ),
         ],
       ),
 

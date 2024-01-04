@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/home/main_food_page.dart';
+import 'package:food_delivery/Screens/FoodScreens/popular_food.dart';
+import 'package:food_delivery/Screens/homeScreen/main_food_page.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
 
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainPage()
+      home: const PopularFood()
+      //const MainPage()
     );
   }
 }

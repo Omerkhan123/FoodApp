@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/color_widget.dart';
+import 'package:food_delivery/utility/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/icon_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
@@ -16,7 +17,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   var  _currPageValues= 0.0;
   final double _scaleFactor= 0.8;
-  final _height = 220;
+  final _height = Dimensions.pageViewContainer;
 
   // this method use to check the value of index
  @override
@@ -39,10 +40,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider  section
         Container(
           // bg color where we checking the codes
           // color: Colors.blue,
-          height: 350,
+          height: Dimensions.pageView,
           child: PageView.builder(
               controller: pageController,
               itemCount: 5,
@@ -51,6 +53,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               }
           ),
         ),
+     // its dots section
      DotsIndicator(
     dotsCount: 5,
     position: _currPageValues.toInt(),
@@ -60,7 +63,111 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     activeSize: const Size(18.0, 9.0),
     activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
     ),
-    )]);
+    ),
+        // Popular Text Section
+         SizedBox(height: Dimensions.height30,),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: 'Popular'),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+
+                child: BigText(text: ".",color: Colors.black,),
+              ),
+              SizedBox(width: Dimensions.width10, ),
+              Container(
+                  margin: const EdgeInsets.only(bottom: 2),
+                  child: SmallText(text: "Food Pricing",
+                    color: AppColors.textColor,)
+              ),
+
+
+
+            ],
+          ),
+        ),
+        // ListView of food and images
+        ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+               shrinkWrap: true,
+            itemCount: 10,
+              itemBuilder: (context, index){
+              return Container(
+                margin:EdgeInsets.only(left: Dimensions.width20,
+                    right: Dimensions.width20,
+                    bottom: Dimensions.height10),
+                child: Row(
+                  children: [
+                    // its the image section ..
+                    Container(
+                      height: Dimensions.listViewSize,
+                      width: Dimensions.listViewSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.blue,
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          image:  AssetImage(
+                            "assets/image/food1.jpeg",
+                          ),
+                        )
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.lisViewContSize,
+                        decoration: BoxDecoration(
+                          color: Colors.white24,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimensions.radius20),
+                            bottomRight: Radius.circular(Dimensions.radius20),
+                          ),
+                        ),
+                        // here we write a text and add icons names 
+                        child: Padding(
+                          padding: EdgeInsets.only(left: Dimensions.width10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              BigText(text: "fruit cake with malaye",color: AppColors.textColor,),
+                              SizedBox(height: Dimensions.height10,),
+                              SmallText(text: "with finnish  test"),
+                              SizedBox(height: Dimensions.height10,),
+
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconTextWidget(icon: Icons.circle_sharp,
+                                      text: "Normal",
+                                      iconColor: AppColors.iconColor1),
+                                  SizedBox(width: 5,),
+                                  IconTextWidget(icon: Icons.location_on,
+                                      text: "1.3 Km",
+                                      iconColor: AppColors.mainColor),
+                                  SizedBox(width: 5,),
+                                  IconTextWidget(icon: Icons.timer_sharp,
+                                      text: "3min",
+                                      iconColor: AppColors.iconColor2),
+
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+              }),
+
+      ],
+    );
+
   }
  Widget _buildPageItem(int index){
 
@@ -98,11 +205,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         children:[
           // this is the main container
           Container(
-        height: 220,
+        height: Dimensions.pageViewContainer,
           margin: EdgeInsets.only(left: 10, right: 10),
           decoration: BoxDecoration(
-            color: index.isEven?Color(0xFF69c5df): Color(0xFF19c5df),
-            borderRadius: BorderRadius.circular(30),
+            color: index.isEven?const Color(0xFF69c5df): Color(0xFF19c5df),
+            borderRadius: BorderRadius.circular(Dimensions.radius30),
             image: const  DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
@@ -115,7 +222,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 150,
+              height: Dimensions.pageViewTextContainer,
               margin: EdgeInsets.only(left: 35, right: 35, bottom: 30,),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -126,16 +233,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       offset:  Offset(0,5),
                     )
                   ],
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
 
               ),
               child: Container(
-                padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: EdgeInsets.only(left: 15, right: 15, top: Dimensions.height15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "its big Pizza "),
-                    SizedBox(height: 10,),
+                    SizedBox(height: Dimensions.height10,),
                     Row(
                       children: [
                         // here we use wrap where we take more icon in a row
@@ -154,9 +261,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: Dimensions.height20,),
                     //
                     const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconTextWidget(icon: Icons.circle_sharp,
                             text: "Normal",
@@ -180,5 +288,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ] 
    ),
     );
+
  }
 }
