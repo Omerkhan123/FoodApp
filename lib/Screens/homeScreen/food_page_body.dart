@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/color_widget.dart';
 import 'package:food_delivery/utility/dimensions.dart';
+import 'package:food_delivery/widgets/appColumn.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/icon_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
@@ -48,8 +49,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: PageView.builder(
               controller: pageController,
               itemCount: 5,
-              itemBuilder: (context, postion){
-                return _buildPageItem(postion);
+              itemBuilder: (context, position){
+                return _buildPageItem(position);
               }
           ),
         ),
@@ -71,11 +72,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: 'Popular'),
+              BigText(text: 'Popular', size: Dimensions.font26,),
               SizedBox(width: Dimensions.width10,),
               Container(
 
-                child: BigText(text: ".",color: Colors.black,),
+                child: BigText(text: ".",color: Colors.black, size: Dimensions.font20,),
               ),
               SizedBox(width: Dimensions.width10, ),
               Container(
@@ -133,9 +134,21 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              BigText(text: "fruit cake with malaye",color: AppColors.textColor,),
+                              BigText(text: "fruit cake with malaye",color: AppColors.textColor, size: Dimensions.font26,),
                               SizedBox(height: Dimensions.height10,),
-                              SmallText(text: "with finnish  test"),
+                             // star row ..
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 Wrap(
+                                     children:
+                                     List.generate(5, (index) => Icon(Icons.star,
+                                       size: 15,
+                                       color: AppColors.mainColor,))
+                                 ),
+                                 SmallText(text: "with finnish  test"),
+                               ],
+                             ),
                               SizedBox(height: Dimensions.height10,),
 
                               const Row(
@@ -169,6 +182,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
 
   }
+
+  // stack container and main items
  Widget _buildPageItem(int index){
 
    // dalta mai yao logic jor kry dy 6 kala page scroll k nu animation shnt ba show ky.
@@ -238,50 +253,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               child: Container(
                 padding: EdgeInsets.only(left: 15, right: 15, top: Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "its big Pizza "),
-                    SizedBox(height: Dimensions.height10,),
-                    Row(
-                      children: [
-                        // here we use wrap where we take more icon in a row
-                        Wrap(
-                          children:
-                           List.generate(5, (index) => Icon(Icons.star,
-                             size: 15,
-                             color: AppColors.mainColor,))
-                        ),
-                        SizedBox(width: 10,),
-                        SmallText(text: "4.5"),
-                        SizedBox(width: 10,),
-                        SmallText(text: "102"),
-                        SizedBox(width: 10,),
-                        SmallText(text: "Comments"),
-
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20,),
-                    //
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconTextWidget(icon: Icons.circle_sharp,
-                            text: "Normal",
-                            iconColor: AppColors.iconColor1),
-                        SizedBox(width: 5,),
-                        IconTextWidget(icon: Icons.location_on,
-                            text: "1.3 Km",
-                            iconColor: AppColors.mainColor),
-                        SizedBox(width: 5,),
-                        IconTextWidget(icon: Icons.timer_sharp,
-                            text: "3min",
-                            iconColor: AppColors.iconColor2),
-
-                      ],
-                    )
-                  ],
-                ),
+                child:  const AppColumn(text: 'Its big Pizza',),
               ),
             ),
           ),

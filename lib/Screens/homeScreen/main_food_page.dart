@@ -31,7 +31,7 @@ class _MainPageState extends State<MainPage> {
                   children: [
                     Column(
                       children: [
-                        BigText(text: "Finland" , color: AppColors.mainColor,),
+                        BigText(text: "Finland" , color: AppColors.mainColor, size: Dimensions.font26,),
                         Row(
                           children: [
                             SmallText(text: "Joensuu" , color: AppColors.textColor,),

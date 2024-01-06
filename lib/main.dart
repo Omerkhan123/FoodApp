@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/Screens/FoodScreens/popular_food.dart';
+import 'package:food_delivery/Screens/FoodScreens/recommended_food_details.dart';
+import 'package:food_delivery/Screens/homeScreen/food_page_body.dart';
 import 'package:food_delivery/Screens/homeScreen/main_food_page.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -21,8 +23,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const PopularFood()
-      //const MainPage()
+      home: const RecommendedFood(),
+      //PopularFood(),
+      //MainPage(),
     );
   }
 }
