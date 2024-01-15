@@ -16,10 +16,10 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
           text,
-      maxLines: 1,
+        //maxLines: 10, its use for line that how many line do you want to show .
       style: TextStyle(
         color: color,
-        fontSize: 12,
+        fontSize: 14,
         height: height,
       ),
     );
